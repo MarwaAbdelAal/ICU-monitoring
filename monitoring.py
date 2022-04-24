@@ -1,4 +1,3 @@
-from asyncio.windows_events import NULL
 from flask import Flask , request , Response
 from flask_cors import CORS
 from flask_pymongo import PyMongo
