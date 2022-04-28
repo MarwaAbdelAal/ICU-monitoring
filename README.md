@@ -1,5 +1,10 @@
 # ICU_monitoring
 
+### Connect the two bluetooth modules as a master and a slave
+[From here] (https://www.youtube.com/watch?v=hyME1osgr7s)
+
+For the *Arduino* circuit there is a *DHT* (temperature and humedity sensor on *pin 2*, in addition to two LEDs on *pin 12, 13* indicating the turned off readings
+
 ### Create database using MongoDB
 
 #### Download MongDB 
