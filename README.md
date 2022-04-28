@@ -7,7 +7,7 @@ For the *Arduino* circuit there is a *DHT* (temperature and humedity sensor on *
 ### Create database using MongoDB
 
 #### Download MongDB 
-[From here] (https://www.mongodb.com/try/download/community)
+[From here](https://www.mongodb.com/try/download/community)
 
 #### Use MongoDB Shell (mongosh)   in Compass or use terminal with next commands 
 
