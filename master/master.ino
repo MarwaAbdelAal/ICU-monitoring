@@ -37,13 +37,13 @@ void setup()
 void loop()
 {
 
-//  if (Serial.available() > 0)
-//  {
-//    Serial.println("data fron esp");
-    dataFromSlave = Serial.read();
-    //    Serial.print("dataFromSlave = ");
-    //    Serial.println(dataFromSlave);
-//  }
+  //  if (Serial.available() > 0)
+  //  {
+  //    Serial.println("data fron esp");
+  dataFromSlave = Serial.read();
+//  Serial.print("dataFromSlave = ");
+//  Serial.println(dataFromSlave);
+  //  }
 
 
   /////////////////// DHT ////////////////////////////////
@@ -66,20 +66,20 @@ void loop()
 
   //  Serial.write(int(h));
   //  Serial.println(int(t));
-//  Serial.println(t);
+  //  Serial.println(t);
   Serial.write(int(t));
-//  delay(1000);
+  //  delay(1000);
   Serial.write(int(h));
-//  Serial.println(h);
+  //  Serial.println(h);
 
-//  Serial.println("state from ESP ");
-//  Serial.print(dataFromSlave);
-  
-  if (dataFromSlave == 1){
+  //  Serial.println("state from ESP ");
+  //  Serial.print(dataFromSlave);
+
+  if (dataFromSlave == 1) {
     digitalWrite(13, LOW); // switch OFF LED
     digitalWrite(12, HIGH); // switch OFF LED
   }
-  else if (dataFromSlave == 2){
+  else if (dataFromSlave == 2) {
     digitalWrite(13, HIGH); // switch OFF LED
     digitalWrite(12, LOW); // switch OFF LED
   }
