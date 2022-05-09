@@ -14,13 +14,14 @@ cors.init_app(app)
 # Connect to database 
 mongodb_client = PyMongo(app, uri="mongodb://localhost:27017/patient_data")
 db = mongodb_client.db
+temp_reading=[]
+press_reading=[]
 
+# temp_reading  =np.ones(50).tolist()
+# press_reading =np.ones(50).tolist()
 
-temp_reading  =np.ones(1000).tolist()
-press_reading =np.ones(1000).tolist()
-
-state=[]
-state.append({"temp_state" :'ON', "pressure_state" :'OFF' })
+state=[{"temp_state" :'ON', "pressure_state" :'ON' }]
+# state.append({"temp_state" :'ON', "pressure_state" :'OFF' })
 
 @app.route("/state",methods=["POST"])
 def save_state():
@@ -44,10 +45,17 @@ def patient_data():
     
     # response = jsonify(_id=ID,temp =db.vital_signs.find_one({"_id": ID})["temp"])
     if reading =="temp":
+        if state[0]["temp_state"] == "ON":
             response = jsonify(_id=ID,temp =db.vital_signs.find_one({"_id": ID})["temp"])
+        else:
+            response = jsonify(_id=ID,temp =np.zeros(50).tolist())
     
     if reading =="pressure":
-            response = jsonify(_id=ID,pressure =db.vital_signs.find_one({"_id": ID})["pressure"])
+             if state[0]["pressure_state"] == "ON":
+                     response = jsonify(_id=ID,pressure =db.vital_signs.find_one({"_id": ID})["pressure"]) 
+             else:
+                    response = jsonify(_id=ID,pressure =np.zeros(50).tolist())
+    # print (response.temp)
 
     # if ((state[0]["temp_state"] == 'ON') and  (state[0]["pressure_state"] == 'OFF')):
             # response = jsonify(_id=ID,temp =db.vital_signs.find_one({"_id": ID})["temp"],pressure = np.zeros(1000).tolist())
@@ -69,11 +77,11 @@ def get_data():
        ID_exist = db.vital_signs.find_one({"_id": ID})
 
        if (ID_exist) :
-            newvalues = { "$set": {"_id": ID, "temp": temp_reading, "pressure": press_reading} }
+            newvalues = { "$set": {"_id": ID, "temp": temp_reading[50:], "pressure": press_reading[50:]} }
             db.vital_signs.update_one({"_id": ID}, newvalues)
 
        else:
-            db.vital_signs.insert_one({ "_id": ID, "temp": temp_reading, "pressure": press_reading})
+            db.vital_signs.insert_one({ "_id": ID, "temp": temp_reading[50:], "pressure": press_reading[50:]})
 
        return jsonify("UPTodate_data")
 
@@ -81,10 +89,14 @@ def get_data():
 @app.route("/leds",methods=["GET"])
 def send_state():
 
-    if state[0]["temp"] == 'ON':
-        return ('1')
-    if state[0]["pressure"] == 'ON':
-        return ('2')
+    if state[0]["temp_state"] == 'ON':
+        active = '1'
+        # print(active)
+        # return (jsonify(active))
+    elif state[0]["pressure_state"] == 'ON':
+        active='2'
+    print(active)
+    return (jsonify(active))
     # temp_state =status ["temp"]
     # pressure_state= status["hum"] 
 
