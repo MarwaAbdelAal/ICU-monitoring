@@ -14,7 +14,7 @@ For the *Arduino* circuit there is a *DHT* (temperature and humedity sensor on *
 ```
 mongo
 use patient_data( yourDB_name)
-db.vital_signs(your collection_name).insertOne({ "_id": 1, "temp": ["47, 46, 48, 39"], "pressure":  ["47, 46, 48, 39"] });
+db.vital_signs(your collection_name).insertOne({ "_id": "1", "temp": ["47, 46, 48, 39"], "pressure":  ["47, 46, 48, 39"] });
 ```
 
 #### Run Server 
