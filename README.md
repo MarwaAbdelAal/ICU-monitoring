@@ -19,5 +19,5 @@ db.vital_signs(your collection_name).insertOne({ "_id": 1, "temp": ["47, 46, 48,
 
 #### Run Server 
 ```
-python monnitoring.py
+python monnitoring_server.py
 ```
