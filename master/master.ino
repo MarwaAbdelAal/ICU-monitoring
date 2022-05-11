@@ -83,7 +83,7 @@ void loop()
     digitalWrite(13, HIGH); // switch OFF LED
     digitalWrite(12, LOW); // switch OFF LED
   }
-  else {
+  else if (dataFromSlave == 0){
     digitalWrite(13, LOW); // switch OFF LED
     digitalWrite(12, LOW); // switch OFF LED
   }
