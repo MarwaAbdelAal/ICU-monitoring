@@ -76,7 +76,32 @@ def get_data():
        else:
             db.vital_signs.insert_one({ "_id": ID, "temp": list(temp_readings.queue), "pressure": list(press_readings.queue)})
 
+       print (" temp = " , request.args.get("temp") )
+       print (" hum = " , request.args.get("hum") )
+       
        return jsonify("data_recieved")
+   
+   
+@app.route("/leds",methods=["GET"])
+def send_state():
+
+    active = '0'
+    # if state[0]["temp_state"] == 'ON':
+    #     active='1'
+    # if state[0]["pressure_state"] == 'ON':
+    #     active='2'
+        
+        
+    if state[0]["temp_state"] == 'OFF':
+        active = '1'
+    elif state[0]["pressure_state"] == 'OFF':
+        active = '2'
+    else :
+        active = '0'
+        
+    print("active =========  ",active)
+    return jsonify (active)
+    
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port= 8090,debug=True)
