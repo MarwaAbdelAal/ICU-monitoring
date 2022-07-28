@@ -17,7 +17,22 @@ use patient_data( yourDB_name)
 db.vital_signs(your collection_name).insertOne({ "_id": "1", "temp": ["47, 46, 48, 39"], "pressure":  ["47, 46, 48, 39"] });
 ```
 
+### Get your own IP address by using cmd of your device and type 
+```
+ipconfig
+```
+
+then make sure to change the existing IP in 'slave_server_esp.ino' in (/slave_server_esp) directory
+
+- Make sure to change IP adress and SSID & password in the arduino code first
+
 #### Run Server 
 ```
 python monitoring_server.py
+```
+## In *react* directory for the application interface
+install components
+```
+npm install
+npm start
 ```
